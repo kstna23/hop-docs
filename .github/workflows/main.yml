@@ -22,12 +22,12 @@ jobs:
         run: |
           pip install mkdocs-material
 
-      - name: Configure Git with PAT
+      - name: Override Git Remote with PAT
         run: |
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git remote set-url origin https://x-access-token:${{ secrets.PERSONAL_TOKEN }}@github.com/${{ github.repository }}
 
-      - name: Build and Deploy
+      - name: Deploy with mkdocs
         run: |
           mkdocs gh-deploy --force --remote-name origin
