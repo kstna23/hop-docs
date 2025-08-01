@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Manual GitHub Pages Deploy
 
 on:
   push:
@@ -6,11 +6,11 @@ on:
       - main
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Python
@@ -22,14 +22,20 @@ jobs:
         run: |
           pip install mkdocs-material
 
-      - name: Override Git Remote with PAT
+      - name: Build documentation
+        run: |
+          mkdocs build --clean
+
+      - name: Deploy manually to gh-pages
         env:
           PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git remote set-url origin https://x-access-token:${{ secrets.PERSONAL_TOKEN }}@github.com/${{ github.repository }}
-
-      - name: Deploy with mkdocs
-        run: |
-          mkdocs gh-deploy --force --remote-name origin
+          cd site
+          git init
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote add origin https://x-access-token:${{ secrets.PERSONAL_TOKEN }}@github.com/${{ github.repository }}
+          git checkout -b gh-pages
+          git add .
+          git commit -m "Deploy docs"
+          git push --force origin gh-pages
