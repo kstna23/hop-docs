@@ -7,7 +7,7 @@
 
 ## 📊 Architekturüberblick
 
-![Apache Hop Architektur](./apache_hop_architektur_diagramm.png)
+![Apache Hop Architektur](img/apache_hop_architektur_diagramm.png)
 
 Apache Hop besteht aus:
 
