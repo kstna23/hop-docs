@@ -1,17 +1,57 @@
-site_name: Apache Hop Knowledge Base
+site_name: Apache Hop Doku
+site_url: https://kstna23.github.io/hop-docs/
+repo_url: https://github.com/kstna23/hop-docs
+repo_name: kstna23/hop-docs
+
 theme:
   name: material
+  language: de
   palette:
-    primary: indigo
-    accent: indigo
+    - scheme: default
+      primary: blue
+      accent: light blue
+      toggle:
+        icon: material/weather-night
+        name: Dunkelmodus aktivieren
+
+    - scheme: slate
+      primary: blue
+      accent: light blue
+      toggle:
+        icon: material/weather-sunny
+        name: Hellmodus aktivieren
+
   features:
-    - navigation.tabs
-    - content.code.annotate
-repo_url: https://github.com/your-org/hop-docs
-repo_name: hop-docs
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.action.edit
+    - content.tabs.link
+
 nav:
-  - Home: index.md
-  - Apache Hop:
-      - Einführung: was_ist_apache_hop.md
-      - Guidelines: hop_developer_guidelines.md
-      - Datenproduktbeschreibung: datenproduktbeschreibung_technisch.md
+  - Übersicht: index.md
+  - Apache Hop: apache-hop.md
+  - Guidelines: developer-guidelines.md
+  - Datenprodukte:
+      - Beispiel: beispiel-datenprodukt.md
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - codehilite
+  - footnotes
+  - meta
+  - tables
+  - pymdownx.superfences
+  - pymdownx.tabbed
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/kstna23/hop-docs
+
+plugins:
+  - search
