@@ -32,10 +32,10 @@ theme:
 
 nav:
   - Übersicht: index.md
-  - Apache Hop: apache-hop.md
-  - Guidelines: developer-guidelines.md
+
+  - Guidelines: hop_developer_guidelines.md
   - Datenprodukte:
-      - Beispiel: beispiel-datenprodukt.md
+      - Beispiel: datenproduktbeschreibung_technisch.md
 
 markdown_extensions:
   - admonition
